@@ -11,6 +11,7 @@ import (
 	"github.com/docker/cli/cli/config/configfile"
 	"github.com/docker/cli/cli/context/docker"
 	"github.com/docker/cli/cli/context/store"
+	hubclient "github.com/docker/cli/cli/hub"
 	manifeststore "github.com/docker/cli/cli/manifest/store"
 	registryclient "github.com/docker/cli/cli/registry/client"
 	"github.com/docker/cli/cli/streams"
@@ -37,6 +38,7 @@ type FakeCli struct {
 	notaryClientFunc NotaryClientFuncType
 	manifestStore    manifeststore.Store
 	registryClient   registryclient.RegistryClient
+	hubClient        hubclient.Client
 	contentTrust     bool
 	contextStore     store.Store
 	currentContext   string
@@ -193,6 +195,11 @@ func (c *FakeCli) ManifestStore() manifeststore.Store {
 // RegistryClient returns a fake client for testing
 func (c *FakeCli) RegistryClient(insecure bool) registryclient.RegistryClient {
 	return c.registryClient
+}
+
+// HubClient returns a fake client for testing
+func (c *FakeCli) HubClient() hubclient.Client {
+	return c.hubClient
 }
 
 // SetManifestStore on the fake cli

@@ -19,6 +19,7 @@ import (
 	"github.com/docker/cli/cli/context/store"
 	"github.com/docker/cli/cli/debug"
 	cliflags "github.com/docker/cli/cli/flags"
+	hubclient "github.com/docker/cli/cli/hub"
 	manifeststore "github.com/docker/cli/cli/manifest/store"
 	registryclient "github.com/docker/cli/cli/registry/client"
 	"github.com/docker/cli/cli/streams"
@@ -60,6 +61,7 @@ type Cli interface {
 	DefaultVersion() string
 	ManifestStore() manifeststore.Store
 	RegistryClient(bool) registryclient.RegistryClient
+	HubClient() hubclient.Client
 	ContentTrustEnabled() bool
 	ContextStore() store.Store
 	CurrentContext() string
@@ -198,6 +200,11 @@ func (cli *DockerCli) RegistryClient(allowInsecure bool) registryclient.Registry
 		return ResolveAuthConfig(ctx, cli, index)
 	}
 	return registryclient.NewRegistryClient(resolver, UserAgent(), allowInsecure)
+}
+
+// HubClient returns a client for communicating with Docker Hub API
+func (cli *DockerCli) HubClient() hubclient.Client {
+	return hubclient.NewClient(UserAgent())
 }
 
 // InitializeOpt is the type of the functional options passed to DockerCli.Initialize
