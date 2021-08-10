@@ -8,18 +8,17 @@ import (
 	"gotest.tools/v3/skip"
 )
 
-func TestGetRepositories(t *testing.T) {
+func TestGetUserInfo(t *testing.T) {
 	environment.SkipIfDaemonNotLinux(t)
 
 	c := NewClient(testUserAgent())
 	err := c.Login()
 	skip.If(t, err != nil)
 
-	repos, total, err := c.GetRepositories("")
+	ui, err := c.GetUserInfo()
 	assert.NilError(t, err)
-	assert.Assert(t, total > 0)
-	assert.Assert(t, len(repos) > 0)
+	assert.Assert(t, len(ui.Name) > 0)
 
-	//b, _ := json.MarshalIndent(repos, "", "  ")
+	//b, _ := json.MarshalIndent(ui, "", "  ")
 	//fmt.Println(string(b))
 }

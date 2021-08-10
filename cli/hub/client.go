@@ -13,15 +13,13 @@ const (
 	registryURL = "https://index.docker.io/v1/"
 	// loginURL path to the Hub login URL
 	loginURL = "/v2/users/login"
-	// itemsPerPage is the maximum of items per page
-	itemsPerPage = 100
 )
 
 // Client is a client used to communicate with Docker Hub API
 type Client interface {
 	Login() error
 	IsLoggedIn() bool
-	GetRepositories(account string) ([]Repository, int, error)
+	GetUserInfo() (*Account, error)
 	doRequest(req *http.Request, reqOps ...RequestOp) ([]byte, error)
 }
 
