@@ -11,7 +11,7 @@ import (
 func TestGetRepositories(t *testing.T) {
 	environment.SkipIfDaemonNotLinux(t)
 
-	c, _ := NewClient()
+	c := NewClient(testUserAgent())
 	err := c.Login()
 	skip.If(t, err != nil)
 

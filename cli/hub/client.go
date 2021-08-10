@@ -6,8 +6,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-
-	"github.com/docker/cli/cli/command"
 )
 
 const (
@@ -19,32 +17,37 @@ const (
 	itemsPerPage = 100
 )
 
-// Client Docker Hub client
-type Client struct {
-	domain  string
-	account string
-	token   string
+// Client is a client used to communicate with Docker Hub API
+type Client interface {
+	Login() error
+	IsLoggedIn() bool
+	GetRepositories(account string) ([]Repository, int, error)
+	doRequest(req *http.Request, reqOps ...RequestOp) ([]byte, error)
 }
-
-// RequestOp represents an option to customize the request sent to the Hub API
-type RequestOp func(r *http.Request) error
 
 // NewClient get a client to request Docker Hub
-func NewClient() (*Client, error) {
-	return &Client{
-		domain: getInstance().APIHubBaseURL,
-	}, nil
-}
-
-func withHubToken(token string) RequestOp {
-	return func(req *http.Request) error {
-		req.Header["Authorization"] = []string{fmt.Sprintf("Bearer %s", token)}
-		return nil
+func NewClient(userAgent string) Client {
+	return &client{
+		userAgent: userAgent,
+		domain:    getInstance().APIHubBaseURL,
 	}
 }
 
+type client struct {
+	userAgent string
+	domain    string
+	account   string
+	token     string
+}
+
+var _ Client = &client{}
+
+// RequestOp represents an option to customize the request
+// sent to the Hub API
+type RequestOp func(r *http.Request) error
+
 // Login tries to authenticate
-func (c *Client) Login() error {
+func (c *client) Login() error {
 	// Retrieve auth config
 	authconfig, err := AuthConfig()
 	if err != nil {
@@ -93,7 +96,19 @@ func (c *Client) Login() error {
 	return fmt.Errorf("failed to authenticate: bad status code %q: %s", resp.Status, string(buf))
 }
 
-func (c *Client) doRequest(req *http.Request, reqOps ...RequestOp) ([]byte, error) {
+// IsLoggedIn checks if logged in to Docker Hub
+func (c *client) IsLoggedIn() bool {
+	return len(c.token) > 0
+}
+
+func withHubToken(token string) RequestOp {
+	return func(req *http.Request) error {
+		req.Header["Authorization"] = []string{fmt.Sprintf("Bearer %s", token)}
+		return nil
+	}
+}
+
+func (c *client) doRequest(req *http.Request, reqOps ...RequestOp) ([]byte, error) {
 	resp, err := c.doRawRequest(req, reqOps...)
 	if err != nil {
 		return nil, err
@@ -124,10 +139,10 @@ func (c *Client) doRequest(req *http.Request, reqOps ...RequestOp) ([]byte, erro
 	return buf, nil
 }
 
-func (c *Client) doRawRequest(req *http.Request, reqOps ...RequestOp) (*http.Response, error) {
+func (c *client) doRawRequest(req *http.Request, reqOps ...RequestOp) (*http.Response, error) {
 	req.Header["Accept"] = []string{"application/json"}
 	req.Header["Content-Type"] = []string{"application/json"}
-	req.Header["User-Agent"] = []string{command.UserAgent()}
+	req.Header["User-Agent"] = []string{c.userAgent}
 	for _, op := range reqOps {
 		if err := op(req); err != nil {
 			return nil, err

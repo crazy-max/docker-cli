@@ -47,7 +47,7 @@ type hubRepositoryResult struct {
 }
 
 // GetRepositories lists all the repositories a user can access
-func (c *Client) GetRepositories(account string) ([]Repository, int, error) {
+func (c *client) GetRepositories(account string) ([]Repository, int, error) {
 	if len(account) == 0 {
 		account = c.account
 	}
@@ -78,7 +78,7 @@ func (c *Client) GetRepositories(account string) ([]Repository, int, error) {
 	return repos, total, nil
 }
 
-func (c *Client) getRepositoriesPage(url, account string) ([]Repository, int, string, error) {
+func (c *client) getRepositoriesPage(url, account string) ([]Repository, int, string, error) {
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, 0, "", err
