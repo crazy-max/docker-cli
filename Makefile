@@ -25,17 +25,9 @@ test-coverage: ## run test coverage
 fmt:
 	go list -f {{.Dir}} ./... | xargs gofmt -w -s -d
 
-.PHONY: binary
-binary:
-	docker buildx bake binary
-
 .PHONY: plugins
 plugins: ## build example CLI plugins
 	./scripts/build/plugins
-
-.PHONY: cross
-cross:
-	docker buildx bake cross
 
 .PHONY: plugins-windows
 plugins-windows: ## build example CLI plugins for Windows
@@ -44,10 +36,6 @@ plugins-windows: ## build example CLI plugins for Windows
 .PHONY: plugins-osx
 plugins-osx: ## build example CLI plugins for macOS
 	./scripts/build/plugins-osx
-
-.PHONY: dynbinary
-dynbinary: ## build dynamically linked binary
-	USE_GLIBC=1 docker buildx bake dynbinary
 
 vendor: vendor.conf ## check that vendor matches vendor.conf
 	rm -rf vendor

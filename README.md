@@ -14,38 +14,38 @@ Development
 
 Build CLI from source:
 
-```
+```console
 $ docker buildx bake
 ```
 
 Build binaries for all supported platforms:
 
-```
+```console
 $ docker buildx bake cross
 ```
 
 Build for a specific platform:
 
-```
+```console
 $ docker buildx bake --set binary.platform=linux/arm64 
 ```
 
 Build dynamic binary for glibc or musl:
 
-```
+```console
 $ USE_GLIBC=1 docker buildx bake dynbinary 
 ```
 
 
 Run all linting:
 
-```
-$ make -f docker.Makefile lint
+```console
+$ docker buildx bake lint shellcheck
 ```
 
 List all the available targets:
 
-```
+```console
 $ make help
 ```
 
@@ -53,7 +53,7 @@ $ make help
 
 Start an interactive development environment:
 
-```
+```console
 $ make -f docker.Makefile shell
 ```
 
