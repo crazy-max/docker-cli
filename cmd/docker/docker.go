@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"strconv"
 	"strings"
 	"syscall"
 
@@ -23,7 +24,7 @@ import (
 )
 
 var allowedAliases = map[string]struct{}{
-	"builder": {},
+	"builder": {}, // TODO: builder alias should be deprecated (buildx by default)
 }
 
 func newDockerCommand(dockerCli *command.DockerCli) *cli.TopLevelCommand {
@@ -234,12 +235,6 @@ func processAliases(dockerCli command.Cli, cmd *cobra.Command, args, osArgs []st
 		aliases = append(aliases, [2][]string{{k}, {v}})
 	}
 
-	if v, ok := aliasMap["builder"]; ok {
-		aliases = append(aliases,
-			[2][]string{{"build"}, {v, "build"}},
-			[2][]string{{"image", "build"}, {v, "build"}},
-		)
-	}
 	for _, al := range aliases {
 		var didChange bool
 		args, didChange = command.StringSliceReplaceAt(args, al[0], al[1], 0)
@@ -247,6 +242,72 @@ func processAliases(dockerCli command.Cli, cmd *cobra.Command, args, osArgs []st
 			osArgs, _ = command.StringSliceReplaceAt(osArgs, al[0], al[1], -1)
 			break
 		}
+	}
+
+	return args, osArgs, nil
+}
+
+func processBuildx(dockerCli command.Cli, cmd *cobra.Command, args, osArgs []string) ([]string, []string, error) {
+	// check DOCKER_BUILDKIT env var is present and
+	// if not assume we want to use buildx
+	if v, ok := os.LookupEnv("DOCKER_BUILDKIT"); ok {
+		enabled, err := strconv.ParseBool(v)
+		if err != nil {
+			return args, osArgs, errors.Wrap(err, "DOCKER_BUILDKIT environment variable expects boolean value")
+		}
+		if !enabled {
+			return args, osArgs, nil
+		}
+	}
+
+	// wcow build command must use the legacy builder
+	if dockerCli.ServerInfo().OSType == "windows" {
+		return args, osArgs, nil
+	}
+
+	// buildx aliases
+	aliases := [][2][]string{
+		{
+			{"builder", "prune"},
+			{"buildx", "prune"},
+		},
+		{
+			{"build"},
+			{"buildx", "build"},
+		},
+		{
+			{"image", "build"},
+			{"buildx", "build"},
+		},
+	}
+
+	// are we using a cmd that should be forwarded to buildx?
+	var forwarded bool
+	for _, al := range aliases {
+		var didChange bool
+		args, didChange = command.StringSliceReplaceAt(args, al[0], al[1], 0)
+		if didChange {
+			forwarded = true
+			osArgs, _ = command.StringSliceReplaceAt(osArgs, al[0], al[1], -1)
+			break
+		}
+	}
+	if !forwarded {
+		return args, osArgs, nil
+	}
+
+	// check plugin is available if cmd forwarded
+	plugin, perr := pluginmanager.GetPlugin("buildx", dockerCli, cmd.Root())
+	if perr == nil && plugin != nil {
+		perr = plugin.Err
+	}
+	if perr != nil {
+		return args, osArgs, errors.Errorf(`%v
+
+ERROR: Missing or broken buildx plugin. To install buildx, see
+       https://docs.docker.com/buildx/working-with-buildx/#install. You can
+       also fallback to the legacy builder with: DOCKER_BUILDKIT=0
+`, perr)
 	}
 
 	return args, osArgs, nil
@@ -261,6 +322,11 @@ func runDocker(dockerCli *command.DockerCli) error {
 	}
 
 	if err := tcmd.Initialize(); err != nil {
+		return err
+	}
+
+	args, os.Args, err = processBuildx(dockerCli, cmd, args, os.Args)
+	if err != nil {
 		return err
 	}
 
@@ -346,8 +412,6 @@ func hideSubcommandIf(subcmd *cobra.Command, condition func(string) bool, annota
 
 func hideUnsupportedFeatures(cmd *cobra.Command, details versionDetails) error {
 	var (
-		buildKitDisabled = func(_ string) bool { v, _ := command.BuildKitEnabled(details.ServerInfo()); return !v }
-		buildKitEnabled  = func(_ string) bool { v, _ := command.BuildKitEnabled(details.ServerInfo()); return v }
 		notExperimental  = func(_ string) bool { return !details.ServerInfo().HasExperimental }
 		notOSType        = func(v string) bool { return v != details.ServerInfo().OSType }
 		versionOlderThan = func(v string) bool { return versions.LessThan(details.Client().ClientVersion(), v) }
@@ -365,16 +429,12 @@ func hideUnsupportedFeatures(cmd *cobra.Command, details versionDetails) error {
 			}
 		}
 
-		hideFlagIf(f, buildKitDisabled, "buildkit")
-		hideFlagIf(f, buildKitEnabled, "no-buildkit")
 		hideFlagIf(f, notExperimental, "experimental")
 		hideFlagIf(f, notOSType, "ostype")
 		hideFlagIf(f, versionOlderThan, "version")
 	})
 
 	for _, subcmd := range cmd.Commands() {
-		hideSubcommandIf(subcmd, buildKitDisabled, "buildkit")
-		hideSubcommandIf(subcmd, buildKitEnabled, "no-buildkit")
 		hideSubcommandIf(subcmd, notExperimental, "experimental")
 		hideSubcommandIf(subcmd, notOSType, "ostype")
 		hideSubcommandIf(subcmd, versionOlderThan, "version")
