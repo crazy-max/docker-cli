@@ -3,9 +3,9 @@ package manifest
 import (
 	"context"
 
-	"github.com/docker/cli/cli/command"
-	"github.com/docker/cli/cli/manifest/store"
-	"github.com/docker/cli/cli/manifest/types"
+	"github.com/crazy-max/docker-cli/cli/command"
+	"github.com/crazy-max/docker-cli/cli/manifest/store"
+	"github.com/crazy-max/docker-cli/cli/manifest/types"
 	"github.com/docker/distribution/reference"
 )
 

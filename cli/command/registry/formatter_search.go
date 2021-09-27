@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/docker/cli/cli/command/formatter"
+	"github.com/crazy-max/docker-cli/cli/command/formatter"
 	registry "github.com/docker/docker/api/types/registry"
 )
 

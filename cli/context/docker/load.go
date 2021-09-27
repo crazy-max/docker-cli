@@ -10,9 +10,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/docker/cli/cli/connhelper"
-	"github.com/docker/cli/cli/context"
-	"github.com/docker/cli/cli/context/store"
+	"github.com/crazy-max/docker-cli/cli/connhelper"
+	"github.com/crazy-max/docker-cli/cli/context"
+	"github.com/crazy-max/docker-cli/cli/context/store"
 	"github.com/docker/docker/client"
 	"github.com/docker/go-connections/tlsconfig"
 	"github.com/pkg/errors"
@@ -71,7 +71,7 @@ func (c *Endpoint) tlsConfig() (*tls.Config, error) {
 		}
 
 		var err error
-		// TODO should we follow Golang, and deprecate RFC 1423 encryption, and produce a warning (or just error)? see https://github.com/docker/cli/issues/3212
+		// TODO should we follow Golang, and deprecate RFC 1423 encryption, and produce a warning (or just error)? see https://github.com/crazy-max/docker-cli/issues/3212
 		if x509.IsEncryptedPEMBlock(pemBlock) { //nolint: staticcheck // SA1019: x509.IsEncryptedPEMBlock is deprecated, and insecure by design
 			keyBytes, err = x509.DecryptPEMBlock(pemBlock, []byte(c.TLSPassword)) //nolint: staticcheck // SA1019: x509.IsEncryptedPEMBlock is deprecated, and insecure by design
 			if err != nil {

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 
-	"github.com/docker/cli/cli/context/store"
+	"github.com/crazy-max/docker-cli/cli/context/store"
 )
 
 // DockerContext is a typed representation of what we put in Context metadata

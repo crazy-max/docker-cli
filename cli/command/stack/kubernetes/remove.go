@@ -3,7 +3,7 @@ package kubernetes
 import (
 	"fmt"
 
-	"github.com/docker/cli/cli/command/stack/options"
+	"github.com/crazy-max/docker-cli/cli/command/stack/options"
 	"github.com/pkg/errors"
 )
 

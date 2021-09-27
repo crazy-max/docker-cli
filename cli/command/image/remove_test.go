@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"github.com/docker/cli/internal/test"
+	"github.com/crazy-max/docker-cli/internal/test"
 	"github.com/docker/docker/api/types"
 	"github.com/pkg/errors"
 	"gotest.tools/v3/assert"

@@ -3,7 +3,7 @@ package kubernetes
 import (
 	"testing"
 
-	. "github.com/docker/cli/internal/test/builders" // Import builders to get the builder function as package function
+	. "github.com/crazy-max/docker-cli/internal/test/builders" // Import builders to get the builder function as package function
 	"github.com/docker/compose-on-kubernetes/api/labels"
 	"github.com/docker/docker/api/types/swarm"
 	"gotest.tools/v3/assert"

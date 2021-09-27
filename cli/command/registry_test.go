@@ -10,12 +10,12 @@ import (
 	"gotest.tools/v3/assert"
 	is "gotest.tools/v3/assert/cmp"
 
-	// Prevents a circular import with "github.com/docker/cli/internal/test"
+	// Prevents a circular import with "github.com/crazy-max/docker-cli/internal/test"
 
-	. "github.com/docker/cli/cli/command"
-	configtypes "github.com/docker/cli/cli/config/types"
-	"github.com/docker/cli/cli/debug"
-	"github.com/docker/cli/internal/test"
+	. "github.com/crazy-max/docker-cli/cli/command"
+	configtypes "github.com/crazy-max/docker-cli/cli/config/types"
+	"github.com/crazy-max/docker-cli/cli/debug"
+	"github.com/crazy-max/docker-cli/internal/test"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/client"
 )

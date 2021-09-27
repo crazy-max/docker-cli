@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/docker/cli/cli/command/formatter"
-	"github.com/docker/cli/internal/test"
+	"github.com/crazy-max/docker-cli/cli/command/formatter"
+	"github.com/crazy-max/docker-cli/internal/test"
 	registrytypes "github.com/docker/docker/api/types/registry"
 	"gotest.tools/v3/assert"
 	is "gotest.tools/v3/assert/cmp"

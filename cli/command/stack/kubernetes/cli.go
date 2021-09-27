@@ -6,8 +6,8 @@ import (
 	"net/url"
 	"os"
 
-	"github.com/docker/cli/cli/command"
-	kubecontext "github.com/docker/cli/cli/context/kubernetes"
+	"github.com/crazy-max/docker-cli/cli/command"
+	kubecontext "github.com/crazy-max/docker-cli/cli/context/kubernetes"
 	kubernetes "github.com/docker/compose-on-kubernetes/api"
 	cliv1beta1 "github.com/docker/compose-on-kubernetes/api/client/clientset/typed/compose/v1beta1"
 	"github.com/pkg/errors"

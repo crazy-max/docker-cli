@@ -3,7 +3,7 @@ package context
 import (
 	"testing"
 
-	"github.com/docker/cli/cli/command"
+	"github.com/crazy-max/docker-cli/cli/command"
 	"gotest.tools/v3/assert"
 	"gotest.tools/v3/env"
 	"gotest.tools/v3/golden"

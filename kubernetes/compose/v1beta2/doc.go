@@ -3,4 +3,4 @@
 // of the same resource
 
 // Package v1beta2 is the second version of the stack, containing a structured spec
-package v1beta2 // import "github.com/docker/cli/kubernetes/compose/v1beta2"
+package v1beta2 // import "github.com/crazy-max/docker-cli/kubernetes/compose/v1beta2"

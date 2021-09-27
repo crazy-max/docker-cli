@@ -3,9 +3,9 @@ package plugin
 import (
 	"context"
 
-	"github.com/docker/cli/cli"
-	"github.com/docker/cli/cli/command"
-	"github.com/docker/cli/cli/command/inspect"
+	"github.com/crazy-max/docker-cli/cli"
+	"github.com/crazy-max/docker-cli/cli/command"
+	"github.com/crazy-max/docker-cli/cli/command/inspect"
 	"github.com/spf13/cobra"
 )
 

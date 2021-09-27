@@ -13,9 +13,9 @@ import (
 	"strings"
 	"testing"
 
-	cliconfig "github.com/docker/cli/cli/config"
-	"github.com/docker/cli/cli/config/configfile"
-	"github.com/docker/cli/cli/flags"
+	cliconfig "github.com/crazy-max/docker-cli/cli/config"
+	"github.com/crazy-max/docker-cli/cli/config/configfile"
+	"github.com/crazy-max/docker-cli/cli/flags"
 	"github.com/docker/docker/api"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/client"
@@ -69,7 +69,7 @@ func TestNewAPIClientFromFlagsWithCustomHeaders(t *testing.T) {
 	assert.Equal(t, apiClient.DaemonHost(), host)
 	assert.Equal(t, apiClient.ClientVersion(), api.DefaultVersion)
 
-	// verify User-Agent is not appended to the configfile. see https://github.com/docker/cli/pull/2756
+	// verify User-Agent is not appended to the configfile. see https://github.com/crazy-max/docker-cli/pull/2756
 	assert.DeepEqual(t, configFile.HTTPHeaders, map[string]string{"My-Header": "Custom-Value"})
 
 	expectedHeaders := map[string]string{

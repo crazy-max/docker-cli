@@ -1,3 +1,3 @@
 package main
 
-import _ "github.com/docker/cli/cli/winresources"
+import _ "github.com/crazy-max/docker-cli/cli/winresources"

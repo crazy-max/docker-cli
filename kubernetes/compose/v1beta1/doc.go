@@ -8,4 +8,4 @@
 // +groupName=compose.docker.com
 
 // Package v1beta1 is the first version of the Stack spec, containing only a compose file
-package v1beta1 // import "github.com/docker/cli/kubernetes/compose/v1beta1"
+package v1beta1 // import "github.com/crazy-max/docker-cli/kubernetes/compose/v1beta1"

@@ -5,9 +5,9 @@ import (
 	"io"
 	"os"
 
-	"github.com/docker/cli/cli"
-	"github.com/docker/cli/cli/command"
-	dockeropts "github.com/docker/cli/opts"
+	"github.com/crazy-max/docker-cli/cli"
+	"github.com/crazy-max/docker-cli/cli/command"
+	dockeropts "github.com/crazy-max/docker-cli/opts"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/pkg/jsonmessage"
 	"github.com/docker/docker/pkg/urlutil"

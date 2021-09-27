@@ -6,9 +6,9 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/docker/cli/cli/context/docker"
-	"github.com/docker/cli/cli/context/store"
-	"github.com/docker/cli/cli/streams"
+	"github.com/crazy-max/docker-cli/cli/context/docker"
+	"github.com/crazy-max/docker-cli/cli/context/store"
+	"github.com/crazy-max/docker-cli/cli/streams"
 	"github.com/moby/term"
 )
 

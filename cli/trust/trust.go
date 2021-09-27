@@ -12,7 +12,7 @@ import (
 	"path/filepath"
 	"time"
 
-	cliconfig "github.com/docker/cli/cli/config"
+	cliconfig "github.com/crazy-max/docker-cli/cli/config"
 	"github.com/docker/distribution/reference"
 	"github.com/docker/distribution/registry/client/auth"
 	"github.com/docker/distribution/registry/client/auth/challenge"

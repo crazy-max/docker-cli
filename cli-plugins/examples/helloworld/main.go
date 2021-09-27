@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/docker/cli/cli-plugins/manager"
-	"github.com/docker/cli/cli-plugins/plugin"
-	"github.com/docker/cli/cli/command"
+	"github.com/crazy-max/docker-cli/cli-plugins/manager"
+	"github.com/crazy-max/docker-cli/cli-plugins/plugin"
+	"github.com/crazy-max/docker-cli/cli/command"
 	"github.com/spf13/cobra"
 )
 

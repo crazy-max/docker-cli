@@ -1,7 +1,7 @@
 package notary
 
 import (
-	"github.com/docker/cli/cli/trust"
+	"github.com/crazy-max/docker-cli/cli/trust"
 	"github.com/theupdateframework/notary/client"
 	"github.com/theupdateframework/notary/client/changelist"
 	"github.com/theupdateframework/notary/cryptoservice"

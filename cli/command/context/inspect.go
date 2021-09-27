@@ -3,9 +3,9 @@ package context
 import (
 	"errors"
 
-	"github.com/docker/cli/cli/command"
-	"github.com/docker/cli/cli/command/inspect"
-	"github.com/docker/cli/cli/context/store"
+	"github.com/crazy-max/docker-cli/cli/command"
+	"github.com/crazy-max/docker-cli/cli/command/inspect"
+	"github.com/crazy-max/docker-cli/cli/context/store"
 	"github.com/spf13/cobra"
 )
 

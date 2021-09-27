@@ -10,7 +10,7 @@ if ! command -v go-md2man &> /dev/null; then
 fi
 
 # Generate man pages from cobra commands
-go build -o /tmp/gen-manpages github.com/docker/cli/man
+go build -o /tmp/gen-manpages github.com/crazy-max/docker-cli/man
 /tmp/gen-manpages --root "$(pwd)" --target "$(pwd)/man/man1"
 
 # Generate legacy pages from markdown

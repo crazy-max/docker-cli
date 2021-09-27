@@ -6,9 +6,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/docker/cli/cli/config"
-	"github.com/docker/cli/cli/config/configfile"
-	"github.com/docker/cli/cli/context/store"
+	"github.com/crazy-max/docker-cli/cli/config"
+	"github.com/crazy-max/docker-cli/cli/config/configfile"
+	"github.com/crazy-max/docker-cli/cli/context/store"
 	"gotest.tools/v3/assert"
 )
 

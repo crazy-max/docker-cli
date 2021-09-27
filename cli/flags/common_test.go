@@ -4,7 +4,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	cliconfig "github.com/docker/cli/cli/config"
+	cliconfig "github.com/crazy-max/docker-cli/cli/config"
 	"github.com/spf13/pflag"
 	"gotest.tools/v3/assert"
 	is "gotest.tools/v3/assert/cmp"

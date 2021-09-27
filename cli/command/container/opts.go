@@ -12,8 +12,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/docker/cli/cli/compose/loader"
-	"github.com/docker/cli/opts"
+	"github.com/crazy-max/docker-cli/cli/compose/loader"
+	"github.com/crazy-max/docker-cli/opts"
 	"github.com/docker/docker/api/types/container"
 	networktypes "github.com/docker/docker/api/types/network"
 	"github.com/docker/docker/api/types/strslice"

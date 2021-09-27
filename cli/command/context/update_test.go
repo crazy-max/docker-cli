@@ -3,9 +3,9 @@ package context
 import (
 	"testing"
 
-	"github.com/docker/cli/cli/command"
-	"github.com/docker/cli/cli/context/docker"
-	"github.com/docker/cli/cli/context/kubernetes"
+	"github.com/crazy-max/docker-cli/cli/command"
+	"github.com/crazy-max/docker-cli/cli/context/docker"
+	"github.com/crazy-max/docker-cli/cli/context/kubernetes"
 	"gotest.tools/v3/assert"
 	"gotest.tools/v3/assert/cmp"
 )

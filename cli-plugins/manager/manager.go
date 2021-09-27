@@ -7,8 +7,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/docker/cli/cli/command"
-	"github.com/docker/cli/cli/config"
+	"github.com/crazy-max/docker-cli/cli/command"
+	"github.com/crazy-max/docker-cli/cli/config"
 	"github.com/fvbommel/sortorder"
 	"github.com/spf13/cobra"
 	exec "golang.org/x/sys/execabs"

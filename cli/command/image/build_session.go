@@ -10,8 +10,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/docker/cli/cli/command"
-	cliconfig "github.com/docker/cli/cli/config"
+	"github.com/crazy-max/docker-cli/cli/command"
+	cliconfig "github.com/crazy-max/docker-cli/cli/config"
 	"github.com/docker/docker/api/types/versions"
 	"github.com/moby/buildkit/session"
 	"github.com/pkg/errors"

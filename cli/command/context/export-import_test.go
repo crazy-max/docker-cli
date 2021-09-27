@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/docker/cli/cli/streams"
+	"github.com/crazy-max/docker-cli/cli/streams"
 	"gotest.tools/v3/assert"
 )
 

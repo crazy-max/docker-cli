@@ -68,10 +68,10 @@ func TestClashWithGlobalArgs(t *testing.T) {
 }
 
 // TestGlobalArgsOnlyParsedOnce checks that global args are only parsed
-// once (cf https://github.com/docker/cli/issues/1801). These tests
+// once (cf https://github.com/crazy-max/docker-cli/issues/1801). These tests
 // rely on `-H` being a list type (i.e. NewNamedListOptsRef) which
 // reject multiple uses dynamically (see `getServerHost()` in
-// github.com/docker/cli/cli/command/cli.go) in order to detect this
+// github.com/crazy-max/docker-cli/cli/command/cli.go) in order to detect this
 // scenario.
 func TestGlobalArgsOnlyParsedOnce(t *testing.T) {
 	run, _, cleanup := prepare(t)

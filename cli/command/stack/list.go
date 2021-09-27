@@ -3,12 +3,12 @@ package stack
 import (
 	"sort"
 
-	"github.com/docker/cli/cli"
-	"github.com/docker/cli/cli/command"
-	"github.com/docker/cli/cli/command/stack/formatter"
-	"github.com/docker/cli/cli/command/stack/kubernetes"
-	"github.com/docker/cli/cli/command/stack/options"
-	"github.com/docker/cli/cli/command/stack/swarm"
+	"github.com/crazy-max/docker-cli/cli"
+	"github.com/crazy-max/docker-cli/cli/command"
+	"github.com/crazy-max/docker-cli/cli/command/stack/formatter"
+	"github.com/crazy-max/docker-cli/cli/command/stack/kubernetes"
+	"github.com/crazy-max/docker-cli/cli/command/stack/options"
+	"github.com/crazy-max/docker-cli/cli/command/stack/swarm"
 	"github.com/fvbommel/sortorder"
 	"github.com/spf13/cobra"
 )

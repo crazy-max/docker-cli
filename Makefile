@@ -1,5 +1,5 @@
 #
-# github.com/docker/cli
+# github.com/crazy-max/docker-cli
 #
 all: binary
 

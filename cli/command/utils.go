@@ -9,7 +9,7 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/docker/cli/cli/streams"
+	"github.com/crazy-max/docker-cli/cli/streams"
 	"github.com/docker/docker/api/types/filters"
 	"github.com/docker/docker/pkg/system"
 	"github.com/pkg/errors"

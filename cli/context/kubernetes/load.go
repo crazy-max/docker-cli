@@ -4,9 +4,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/docker/cli/cli/command"
-	"github.com/docker/cli/cli/context"
-	"github.com/docker/cli/cli/context/store"
+	"github.com/crazy-max/docker-cli/cli/command"
+	"github.com/crazy-max/docker-cli/cli/context"
+	"github.com/crazy-max/docker-cli/cli/context/store"
 	api "github.com/docker/compose-on-kubernetes/api"
 	"github.com/docker/docker/pkg/homedir"
 	"github.com/pkg/errors"

@@ -3,7 +3,7 @@ package kubernetes
 import (
 	"io/ioutil"
 
-	"github.com/docker/cli/cli/context"
+	"github.com/crazy-max/docker-cli/cli/context"
 	"k8s.io/client-go/tools/clientcmd"
 	clientcmdapi "k8s.io/client-go/tools/clientcmd/api"
 )

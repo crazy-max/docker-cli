@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/docker/cli/cli-plugins/manager"
+	"github.com/crazy-max/docker-cli/cli-plugins/manager"
 )
 
 func main() {

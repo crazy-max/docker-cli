@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	interp "github.com/docker/cli/cli/compose/interpolation"
+	interp "github.com/crazy-max/docker-cli/cli/compose/interpolation"
 	"github.com/pkg/errors"
 )
 

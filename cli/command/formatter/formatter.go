@@ -7,7 +7,7 @@ import (
 	"text/tabwriter"
 	"text/template"
 
-	"github.com/docker/cli/templates"
+	"github.com/crazy-max/docker-cli/templates"
 	"github.com/pkg/errors"
 )
 

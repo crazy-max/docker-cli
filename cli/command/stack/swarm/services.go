@@ -3,9 +3,9 @@ package swarm
 import (
 	"context"
 
-	"github.com/docker/cli/cli/command"
-	"github.com/docker/cli/cli/command/service"
-	"github.com/docker/cli/cli/command/stack/options"
+	"github.com/crazy-max/docker-cli/cli/command"
+	"github.com/crazy-max/docker-cli/cli/command/service"
+	"github.com/crazy-max/docker-cli/cli/command/stack/options"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/swarm"
 )

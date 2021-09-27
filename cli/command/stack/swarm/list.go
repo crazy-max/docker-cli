@@ -3,9 +3,9 @@ package swarm
 import (
 	"context"
 
-	"github.com/docker/cli/cli/command"
-	"github.com/docker/cli/cli/command/stack/formatter"
-	"github.com/docker/cli/cli/compose/convert"
+	"github.com/crazy-max/docker-cli/cli/command"
+	"github.com/crazy-max/docker-cli/cli/command/stack/formatter"
+	"github.com/crazy-max/docker-cli/cli/compose/convert"
 	"github.com/docker/docker/api/types"
 	"github.com/pkg/errors"
 )

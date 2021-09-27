@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/docker/cli/cli/command"
-	"github.com/docker/cli/cli/command/idresolver"
-	"github.com/docker/cli/cli/command/stack/options"
-	"github.com/docker/cli/cli/command/task"
+	"github.com/crazy-max/docker-cli/cli/command"
+	"github.com/crazy-max/docker-cli/cli/command/idresolver"
+	"github.com/crazy-max/docker-cli/cli/command/stack/options"
+	"github.com/crazy-max/docker-cli/cli/command/task"
 	"github.com/docker/docker/api/types"
 )
 

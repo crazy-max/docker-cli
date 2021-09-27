@@ -10,8 +10,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/docker/cli/cli/config/credentials"
-	"github.com/docker/cli/cli/config/types"
+	"github.com/crazy-max/docker-cli/cli/config/credentials"
+	"github.com/crazy-max/docker-cli/cli/config/types"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 )

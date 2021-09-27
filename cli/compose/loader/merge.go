@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"sort"
 
-	"github.com/docker/cli/cli/compose/types"
+	"github.com/crazy-max/docker-cli/cli/compose/types"
 	"github.com/imdario/mergo"
 	"github.com/pkg/errors"
 )

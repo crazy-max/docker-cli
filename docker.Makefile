@@ -1,11 +1,11 @@
 #
-# github.com/docker/cli
+# github.com/crazy-max/docker-cli
 #
 # Makefile for developing using Docker
 #
 
 # Overridable env vars
-DOCKER_CLI_MOUNTS ?= -v "$(CURDIR)":/go/src/github.com/docker/cli
+DOCKER_CLI_MOUNTS ?= -v "$(CURDIR)":/go/src/github.com/crazy-max/docker-cli
 DOCKER_CLI_CONTAINER_NAME ?=
 DOCKER_CLI_GO_BUILD_CACHE ?= y
 

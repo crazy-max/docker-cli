@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/docker/cli/cli/command"
-	"github.com/docker/cli/cli/command/formatter"
-	"github.com/docker/cli/cli/command/idresolver"
-	"github.com/docker/cli/cli/config/configfile"
+	"github.com/crazy-max/docker-cli/cli/command"
+	"github.com/crazy-max/docker-cli/cli/command/formatter"
+	"github.com/crazy-max/docker-cli/cli/command/idresolver"
+	"github.com/crazy-max/docker-cli/cli/config/configfile"
 	"github.com/docker/docker/api/types/swarm"
 	"github.com/fvbommel/sortorder"
 )

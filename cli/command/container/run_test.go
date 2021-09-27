@@ -5,8 +5,8 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"github.com/docker/cli/internal/test"
-	"github.com/docker/cli/internal/test/notary"
+	"github.com/crazy-max/docker-cli/internal/test"
+	"github.com/crazy-max/docker-cli/internal/test/notary"
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/api/types/network"
 	specs "github.com/opencontainers/image-spec/specs-go/v1"

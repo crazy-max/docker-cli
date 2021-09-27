@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/docker/cli/cli/config/configfile"
-	"github.com/docker/cli/cli/context/docker"
-	"github.com/docker/cli/cli/context/store"
-	cliflags "github.com/docker/cli/cli/flags"
+	"github.com/crazy-max/docker-cli/cli/config/configfile"
+	"github.com/crazy-max/docker-cli/cli/context/docker"
+	"github.com/crazy-max/docker-cli/cli/context/store"
+	cliflags "github.com/crazy-max/docker-cli/cli/flags"
 	"github.com/pkg/errors"
 )
 
@@ -203,7 +203,7 @@ func (e *noDefaultTLSDataError) Error() string {
 // NotFound satisfies interface github.com/docker/docker/errdefs.ErrNotFound
 func (e *noDefaultTLSDataError) NotFound() {}
 
-// IsTLSDataDoesNotExist satisfies github.com/docker/cli/cli/context/store.tlsDataDoesNotExist
+// IsTLSDataDoesNotExist satisfies github.com/crazy-max/docker-cli/cli/context/store.tlsDataDoesNotExist
 func (e *noDefaultTLSDataError) IsTLSDataDoesNotExist() {}
 
 // GetStorageInfo implements store.Store's GetStorageInfo

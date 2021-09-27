@@ -5,9 +5,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/docker/cli/cli/command"
-	"github.com/docker/cli/cli/command/formatter"
-	"github.com/docker/cli/cli/command/inspect"
+	"github.com/crazy-max/docker-cli/cli/command"
+	"github.com/crazy-max/docker-cli/cli/command/formatter"
+	"github.com/crazy-max/docker-cli/cli/command/inspect"
 	"github.com/docker/docker/api/types/swarm"
 	units "github.com/docker/go-units"
 )

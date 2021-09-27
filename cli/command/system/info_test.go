@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	pluginmanager "github.com/docker/cli/cli-plugins/manager"
-	"github.com/docker/cli/internal/test"
+	pluginmanager "github.com/crazy-max/docker-cli/cli-plugins/manager"
+	"github.com/crazy-max/docker-cli/internal/test"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/registry"
 	"github.com/docker/docker/api/types/swarm"

@@ -3,7 +3,7 @@ package context
 import (
 	"io/ioutil"
 
-	"github.com/docker/cli/cli/context/store"
+	"github.com/crazy-max/docker-cli/cli/context/store"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 )

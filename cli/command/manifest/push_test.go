@@ -5,8 +5,8 @@ import (
 	"io/ioutil"
 	"testing"
 
-	manifesttypes "github.com/docker/cli/cli/manifest/types"
-	"github.com/docker/cli/internal/test"
+	manifesttypes "github.com/crazy-max/docker-cli/cli/manifest/types"
+	"github.com/crazy-max/docker-cli/internal/test"
 	"github.com/docker/distribution/reference"
 	"github.com/pkg/errors"
 	"gotest.tools/v3/assert"

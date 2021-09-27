@@ -5,8 +5,8 @@ import (
 	"io"
 	"io/ioutil"
 
-	"github.com/docker/cli/cli/command"
-	"github.com/docker/cli/cli/command/service/progress"
+	"github.com/crazy-max/docker-cli/cli/command"
+	"github.com/crazy-max/docker-cli/cli/command/service/progress"
 	"github.com/docker/docker/pkg/jsonmessage"
 )
 

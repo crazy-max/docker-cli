@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/docker/cli/internal/test"
+	"github.com/crazy-max/docker-cli/internal/test"
 	"gotest.tools/v3/assert"
 	"gotest.tools/v3/fs"
 )

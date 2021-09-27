@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/docker/cli/internal/test/environment"
+	"github.com/crazy-max/docker-cli/internal/test/environment"
 )
 
 func TestMain(m *testing.M) {

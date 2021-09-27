@@ -11,9 +11,9 @@ import (
 	"runtime"
 	"strings"
 
-	configtypes "github.com/docker/cli/cli/config/types"
-	"github.com/docker/cli/cli/debug"
-	"github.com/docker/cli/cli/streams"
+	configtypes "github.com/crazy-max/docker-cli/cli/config/types"
+	"github.com/crazy-max/docker-cli/cli/debug"
+	"github.com/crazy-max/docker-cli/cli/streams"
 	"github.com/docker/distribution/reference"
 	"github.com/docker/docker/api/types"
 	registrytypes "github.com/docker/docker/api/types/registry"

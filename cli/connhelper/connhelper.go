@@ -6,8 +6,8 @@ import (
 	"net"
 	"net/url"
 
-	"github.com/docker/cli/cli/connhelper/commandconn"
-	"github.com/docker/cli/cli/connhelper/ssh"
+	"github.com/crazy-max/docker-cli/cli/connhelper/commandconn"
+	"github.com/crazy-max/docker-cli/cli/connhelper/ssh"
 	"github.com/pkg/errors"
 )
 

@@ -1,7 +1,7 @@
 package node
 
 import (
-	"github.com/docker/cli/opts"
+	"github.com/crazy-max/docker-cli/opts"
 )
 
 type nodeOptions struct {

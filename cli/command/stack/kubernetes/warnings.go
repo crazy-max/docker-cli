@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"io"
 
-	composetypes "github.com/docker/cli/cli/compose/types"
+	composetypes "github.com/crazy-max/docker-cli/cli/compose/types"
 )
 
 func warnUnsupportedFeatures(stderr io.Writer, cfg *composetypes.Config) {

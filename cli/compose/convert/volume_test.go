@@ -3,7 +3,7 @@ package convert
 import (
 	"testing"
 
-	composetypes "github.com/docker/cli/cli/compose/types"
+	composetypes "github.com/crazy-max/docker-cli/cli/compose/types"
 	"github.com/docker/docker/api/types/mount"
 	"gotest.tools/v3/assert"
 	is "gotest.tools/v3/assert/cmp"

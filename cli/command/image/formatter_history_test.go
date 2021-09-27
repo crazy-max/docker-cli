@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/docker/cli/cli/command/formatter"
-	"github.com/docker/cli/internal/test"
+	"github.com/crazy-max/docker-cli/cli/command/formatter"
+	"github.com/crazy-max/docker-cli/internal/test"
 	"github.com/docker/docker/api/types/image"
 	"github.com/docker/docker/pkg/stringid"
 	"gotest.tools/v3/assert"

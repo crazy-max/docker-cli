@@ -10,15 +10,15 @@ BUILDTIME=${BUILDTIME:-$(date -u --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +"%
 
 PLATFORM_LDFLAGS=
 if test -n "${PLATFORM}"; then
-	PLATFORM_LDFLAGS="-X \"github.com/docker/cli/cli/version.PlatformName=${PLATFORM}\""
+	PLATFORM_LDFLAGS="-X \"github.com/crazy-max/docker-cli/cli/version.PlatformName=${PLATFORM}\""
 fi
 
 export LDFLAGS="\
     -w \
     ${PLATFORM_LDFLAGS} \
-    -X \"github.com/docker/cli/cli/version.GitCommit=${GITCOMMIT}\" \
-    -X \"github.com/docker/cli/cli/version.BuildTime=${BUILDTIME}\" \
-    -X \"github.com/docker/cli/cli/version.Version=${VERSION}\" \
+    -X \"github.com/crazy-max/docker-cli/cli/version.GitCommit=${GITCOMMIT}\" \
+    -X \"github.com/crazy-max/docker-cli/cli/version.BuildTime=${BUILDTIME}\" \
+    -X \"github.com/crazy-max/docker-cli/cli/version.Version=${VERSION}\" \
     ${LDFLAGS:-} \
 "
 
@@ -38,4 +38,4 @@ if [ "${GOOS}" = "windows" ]; then
 fi
 export TARGET
 
-export SOURCE="github.com/docker/cli/cmd/docker"
+export SOURCE="github.com/crazy-max/docker-cli/cmd/docker"

@@ -5,8 +5,8 @@ import (
 	"os"
 	"path/filepath"
 
-	cliconfig "github.com/docker/cli/cli/config"
-	"github.com/docker/cli/opts"
+	cliconfig "github.com/crazy-max/docker-cli/cli/config"
+	"github.com/crazy-max/docker-cli/opts"
 	"github.com/docker/go-connections/tlsconfig"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/pflag"

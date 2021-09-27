@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/docker/cli/cli/command/stack/options"
+	"github.com/crazy-max/docker-cli/cli/command/stack/options"
 	"github.com/docker/compose-on-kubernetes/api/labels"
 	"github.com/docker/docker/api/types/filters"
 	"github.com/docker/docker/api/types/swarm"

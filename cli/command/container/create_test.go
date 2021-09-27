@@ -11,9 +11,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/docker/cli/cli/config/configfile"
-	"github.com/docker/cli/internal/test"
-	"github.com/docker/cli/internal/test/notary"
+	"github.com/crazy-max/docker-cli/cli/config/configfile"
+	"github.com/crazy-max/docker-cli/internal/test"
+	"github.com/crazy-max/docker-cli/internal/test/notary"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/api/types/network"

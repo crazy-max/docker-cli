@@ -5,8 +5,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/docker/cli/cli/context"
-	"github.com/docker/cli/cli/context/store"
+	"github.com/crazy-max/docker-cli/cli/context"
+	"github.com/crazy-max/docker-cli/cli/context/store"
 	"gotest.tools/v3/assert"
 	"k8s.io/client-go/tools/clientcmd"
 	clientcmdapi "k8s.io/client-go/tools/clientcmd/api"

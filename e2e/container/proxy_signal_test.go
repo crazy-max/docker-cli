@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/crazy-max/docker-cli/e2e/internal/fixtures"
 	"github.com/creack/pty"
-	"github.com/docker/cli/e2e/internal/fixtures"
 	"gotest.tools/v3/assert"
 	"gotest.tools/v3/icmd"
 	"gotest.tools/v3/poll"

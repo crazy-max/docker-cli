@@ -110,11 +110,11 @@ Function Execute-Build($additionalBuildTags, $directory) {
 
     $buildTime=$(Get-Date).ToUniversalTime()
     $env:LDFLAGS="-linkmode=internal `
-      -X \""github.com/docker/cli/cli/version.Version=$dockerVersion\"" `
-      -X \""github.com/docker/cli/cli/version.GitCommit=$gitCommit\"" `
-      -X \""github.com/docker/cli/cli/version.BuildTime=$buildTime\"""
+      -X \""github.com/crazy-max/docker-cli/cli/version.Version=$dockerVersion\"" `
+      -X \""github.com/crazy-max/docker-cli/cli/version.GitCommit=$gitCommit\"" `
+      -X \""github.com/crazy-max/docker-cli/cli/version.BuildTime=$buildTime\"""
     if ($env:PLATFORM) {
-      $env:LDFLAGS="$env:LDFLAGS -X \""github.com/docker/cli/cli/version.PlatformName=$env:PLATFORM\"""
+      $env:LDFLAGS="$env:LDFLAGS -X \""github.com/crazy-max/docker-cli/cli/version.PlatformName=$env:PLATFORM\"""
     }
 
     # Generate a version in the form major,minor,patch,build
@@ -148,13 +148,13 @@ Function Execute-Build($additionalBuildTags, $directory) {
 Function Run-UnitTests() {
     Write-Host "INFO: Running unit tests..."
     $testPath="./..."
-    $goListCommand = "go list -e -f '{{if ne .Name """ + '\"github.com/docker/cli\"' + """}}{{.ImportPath}}{{end}}' $testPath"
+    $goListCommand = "go list -e -f '{{if ne .Name """ + '\"github.com/crazy-max/docker-cli\"' + """}}{{.ImportPath}}{{end}}' $testPath"
     $pkgList = $(Invoke-Expression $goListCommand)
     if ($LASTEXITCODE -ne 0) { Throw "go list for unit tests failed" }
-    $pkgList = $pkgList | Select-String -Pattern "github.com/docker/cli"
-    $pkgList = $pkgList | Select-String -NotMatch "github.com/docker/cli/vendor"
-    $pkgList = $pkgList | Select-String -NotMatch "github.com/docker/cli/man"
-    $pkgList = $pkgList | Select-String -NotMatch "github.com/docker/cli/e2e"
+    $pkgList = $pkgList | Select-String -Pattern "github.com/crazy-max/docker-cli"
+    $pkgList = $pkgList | Select-String -NotMatch "github.com/crazy-max/docker-cli/vendor"
+    $pkgList = $pkgList | Select-String -NotMatch "github.com/crazy-max/docker-cli/man"
+    $pkgList = $pkgList | Select-String -NotMatch "github.com/crazy-max/docker-cli/e2e"
     $pkgList = $pkgList -replace "`r`n", " "
     $goTestCommand = "go test" + $raceParm + " -cover -ldflags -w -tags """ + "autogen" + """ -a """ + "-test.timeout=10m" + """ $pkgList"
     Invoke-Expression $goTestCommand
