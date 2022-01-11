@@ -5,7 +5,6 @@ import (
 	"bufio"
 	"bytes"
 	"context"
-	"encoding/csv"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -118,14 +117,12 @@ func NewBuildCommand(dockerCli command.Cli) *cobra.Command {
 	flags.VarP(&options.tags, "tag", "t", "Name and optionally a tag in the 'name:tag' format")
 	flags.Var(&options.buildArgs, "build-arg", "Set build-time variables")
 	flags.Var(options.ulimits, "ulimit", "Ulimit options")
-	flags.SetAnnotation("ulimit", "no-buildkit", nil)
 	flags.StringVarP(&options.dockerfileName, "file", "f", "", "Name of the Dockerfile (Default is 'PATH/Dockerfile')")
 	flags.VarP(&options.memory, "memory", "m", "Memory limit")
 	flags.SetAnnotation("memory", "no-buildkit", nil)
 	flags.Var(&options.memorySwap, "memory-swap", "Swap limit equal to memory plus swap: '-1' to enable unlimited swap")
 	flags.SetAnnotation("memory-swap", "no-buildkit", nil)
 	flags.Var(&options.shmSize, "shm-size", "Size of /dev/shm")
-	flags.SetAnnotation("shm-size", "no-buildkit", nil)
 	flags.Int64VarP(&options.cpuShares, "cpu-shares", "c", 0, "CPU shares (relative weight)")
 	flags.SetAnnotation("cpu-shares", "no-buildkit", nil)
 	flags.Int64Var(&options.cpuPeriod, "cpu-period", 0, "Limit the CPU CFS (Completely Fair Scheduler) period")
@@ -608,59 +605,4 @@ func imageBuildOptions(dockerCli command.Cli, options buildOptions) types.ImageB
 		Target:         options.target,
 		Platform:       options.platform,
 	}
-}
-
-func parseOutputs(inp []string) ([]types.ImageBuildOutput, error) {
-	var outs []types.ImageBuildOutput
-	if len(inp) == 0 {
-		return nil, nil
-	}
-	for _, s := range inp {
-		csvReader := csv.NewReader(strings.NewReader(s))
-		fields, err := csvReader.Read()
-		if err != nil {
-			return nil, err
-		}
-		if len(fields) == 1 && fields[0] == s && !strings.HasPrefix(s, "type=") {
-			if s == "-" {
-				outs = append(outs, types.ImageBuildOutput{
-					Type: "tar",
-					Attrs: map[string]string{
-						"dest": s,
-					},
-				})
-			} else {
-				outs = append(outs, types.ImageBuildOutput{
-					Type: "local",
-					Attrs: map[string]string{
-						"dest": s,
-					},
-				})
-			}
-			continue
-		}
-
-		out := types.ImageBuildOutput{
-			Attrs: map[string]string{},
-		}
-		for _, field := range fields {
-			parts := strings.SplitN(field, "=", 2)
-			if len(parts) != 2 {
-				return nil, errors.Errorf("invalid value %s", field)
-			}
-			key := strings.ToLower(parts[0])
-			value := parts[1]
-			switch key {
-			case "type":
-				out.Type = value
-			default:
-				out.Attrs[key] = value
-			}
-		}
-		if out.Type == "" {
-			return nil, errors.Errorf("type is required for output")
-		}
-		outs = append(outs, out)
-	}
-	return outs, nil
 }
