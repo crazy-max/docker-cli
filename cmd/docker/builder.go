@@ -14,7 +14,7 @@ import (
 
 const (
 	builderDefaultPlugin     = "buildx"
-	builderDefaultInstallMsg = `To install buildx, see https://docs.docker.com/go/buildx.`
+	builderDefaultInstallMsg = `To install buildx, see https://docs.docker.com/go/buildx/`
 	builderErrorMsg          = `%s: Required builder component %s is missing or broken.`
 )
 
