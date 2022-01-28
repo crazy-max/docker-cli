@@ -52,30 +52,20 @@ func processBuilder(dockerCli command.Cli, cmd *cobra.Command, args, osargs []st
 		enforcedBuilder = true
 	}
 
-	// if a builder alias is defined, use it instead
-	// of the default one
-	isAlias := false
-	builderAlias := builderDefaultPlugin
-	aliasMap := dockerCli.ConfigFile().Aliases
-	if v, ok := aliasMap[keyBuilderAlias]; ok {
-		isAlias = true
-		builderAlias = v
-	}
-
 	// wcow build command must use the legacy builder for buildx
 	// if not opt-in through a builder alias
-	if !isAlias && dockerCli.ServerInfo().OSType == "windows" {
+	if dockerCli.ServerInfo().OSType == "windows" {
 		return args, osargs, nil
 	}
 
 	// are we using a cmd that should be forwarded to the builder?
-	fwargs, fwosargs, forwarded := forwardBuilder(builderAlias, args, osargs)
+	fwargs, fwosargs, forwarded := forwardBuilder(builderDefaultPlugin, args, osargs)
 	if !forwarded {
 		return args, osargs, nil
 	}
 
 	// check plugin is available if cmd forwarded
-	plugin, perr := pluginmanager.GetPlugin(builderAlias, dockerCli, cmd.Root())
+	plugin, perr := pluginmanager.GetPlugin(builderDefaultPlugin, dockerCli, cmd.Root())
 	if perr == nil && plugin != nil {
 		perr = plugin.Err
 	}
