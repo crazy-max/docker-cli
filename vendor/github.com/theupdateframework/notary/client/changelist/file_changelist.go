@@ -3,7 +3,6 @@ package changelist
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"sort"
@@ -56,7 +55,7 @@ func getFileNames(dirName string) ([]os.FileInfo, error) {
 // Read a JSON formatted file from disk; convert to TUFChange struct
 func unmarshalFile(dirname string, f os.FileInfo) (*TUFChange, error) {
 	c := &TUFChange{}
-	raw, err := ioutil.ReadFile(filepath.Join(dirname, f.Name()))
+	raw, err := os.ReadFile(filepath.Join(dirname, f.Name()))
 	if err != nil {
 		return c, err
 	}
@@ -92,7 +91,7 @@ func (cl FileChangelist) Add(c Change) error {
 		return err
 	}
 	filename := fmt.Sprintf("%020d_%s.change", time.Now().UnixNano(), uuid.Generate())
-	return ioutil.WriteFile(filepath.Join(cl.dir, filename), cJSON, 0600)
+	return os.WriteFile(filepath.Join(cl.dir, filename), cJSON, 0600)
 }
 
 // Remove deletes the changes found at the given indices

@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"path/filepath"
 	"sort"
 	"strings"
@@ -96,7 +95,7 @@ func ExportKeys(to io.Writer, s Exporter, from string) error {
 func ImportKeys(from io.Reader, to []Importer, fallbackRole string, fallbackGUN string, passRet notary.PassRetriever) error {
 	// importLogic.md contains a small flowchart I made to clear up my understand while writing the cases in this function
 	// it is very rough, but it may help while reading this piece of code
-	data, err := ioutil.ReadAll(from)
+	data, err := io.ReadAll(from)
 	if err != nil {
 		return err
 	}

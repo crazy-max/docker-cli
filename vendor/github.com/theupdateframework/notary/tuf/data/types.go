@@ -9,7 +9,6 @@ import (
 	"fmt"
 	"hash"
 	"io"
-	"io/ioutil"
 	"path"
 	"strings"
 	"time"
@@ -317,12 +316,12 @@ func NewFileMeta(r io.Reader, hashAlgorithms ...string) (FileMeta, error) {
 		case notary.SHA512:
 			h = sha512.New()
 		default:
-			return FileMeta{}, fmt.Errorf("Unknown hash algorithm: %s", hashAlgorithm)
+			return FileMeta{}, fmt.Errorf("unknown hash algorithm: %s", hashAlgorithm)
 		}
 		hashes[hashAlgorithm] = h
 		r = io.TeeReader(r, h)
 	}
-	n, err := io.Copy(ioutil.Discard, r)
+	n, err := io.Copy(io.Discard, r)
 	if err != nil {
 		return FileMeta{}, err
 	}

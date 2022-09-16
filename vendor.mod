@@ -72,7 +72,7 @@ require (
 	golang.org/x/time v0.0.0-20210723032227-1f47c861a9ac // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 	google.golang.org/genproto v0.0.0-20211208223120-3a66f561d7aa // indirect
-	google.golang.org/grpc v1.45.0 // indirect
+	google.golang.org/grpc v1.47.0 // indirect
 	google.golang.org/protobuf v1.27.1 // indirect
 )
 
@@ -84,4 +84,5 @@ replace (
 	// module go.etcd.io/etcd/server/v3 has upgraded its dependency on
 	// go.opentelemetry.io/otel to v1.
 	github.com/google/certificate-transparency-go => github.com/google/certificate-transparency-go v1.0.20
+	github.com/theupdateframework/notary => github.com/jonnystoten/notary v0.7.1-0.20220916153729-450853cd9b13
 )

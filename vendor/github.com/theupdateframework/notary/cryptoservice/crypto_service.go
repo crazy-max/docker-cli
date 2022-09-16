@@ -85,7 +85,7 @@ func (cs *CryptoService) GetKeyInfo(keyID string) (trustmanager.KeyInfo, error) 
 			return info, nil
 		}
 	}
-	return trustmanager.KeyInfo{}, fmt.Errorf("Could not find info for keyID %s", keyID)
+	return trustmanager.KeyInfo{}, fmt.Errorf("could not find info for keyID %s", keyID)
 }
 
 // RemoveKey deletes a key by ID
@@ -154,6 +154,7 @@ func CheckRootKeyIsEncrypted(pemBytes []byte) error {
 	if block.Type == "ENCRYPTED PRIVATE KEY" {
 		return nil
 	}
+	//lint:ignore SA1019 TODO find out if we can remove x509.IsEncryptedPEMBlock as it is deprecated for security vulnerability mentioned in the api doc.
 	if !notary.FIPSEnabled() && x509.IsEncryptedPEMBlock(block) {
 		return nil
 	}

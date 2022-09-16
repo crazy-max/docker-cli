@@ -16,7 +16,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"mime/multipart"
 	"net/http"
 	"net/url"
@@ -67,7 +66,7 @@ func (n NetworkError) Error() string {
 
 func (err ErrServerUnavailable) Error() string {
 	if err.code == 401 {
-		return fmt.Sprintf("you are not authorized to perform this operation: server returned 401.")
+		return "you are not authorized to perform this operation: server returned 401."
 	}
 	return fmt.Sprintf("unable to reach trust server at this time: %d.", err.code)
 }
@@ -148,7 +147,7 @@ func NewHTTPStore(baseURL, metaPrefix, metaExtension, keyExtension string, round
 
 func tryUnmarshalError(resp *http.Response, defaultError error) error {
 	b := io.LimitReader(resp.Body, MaxErrorResponseSize)
-	bodyBytes, err := ioutil.ReadAll(b)
+	bodyBytes, err := io.ReadAll(b)
 	if err != nil {
 		return defaultError
 	}
@@ -214,7 +213,7 @@ func (s HTTPStore) GetSized(name string, size int64) ([]byte, error) {
 	}
 	logrus.Debugf("%d when retrieving metadata for %s", resp.StatusCode, name)
 	b := io.LimitReader(resp.Body, size)
-	body, err := ioutil.ReadAll(b)
+	body, err := io.ReadAll(b)
 	if err != nil {
 		return nil, err
 	}
@@ -340,7 +339,7 @@ func (s HTTPStore) GetKey(role data.RoleName) ([]byte, error) {
 		return nil, err
 	}
 	b := io.LimitReader(resp.Body, MaxKeySize)
-	body, err := ioutil.ReadAll(b)
+	body, err := io.ReadAll(b)
 	if err != nil {
 		return nil, err
 	}
@@ -366,7 +365,7 @@ func (s HTTPStore) RotateKey(role data.RoleName) ([]byte, error) {
 		return nil, err
 	}
 	b := io.LimitReader(resp.Body, MaxKeySize)
-	body, err := ioutil.ReadAll(b)
+	body, err := io.ReadAll(b)
 	if err != nil {
 		return nil, err
 	}

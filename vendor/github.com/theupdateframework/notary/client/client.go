@@ -1,11 +1,10 @@
-//Package client implements everything required for interacting with a Notary repository.
+// Package client implements everything required for interacting with a Notary repository.
 package client
 
 import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -45,7 +44,6 @@ type repository struct {
 	cryptoService  signed.CryptoService
 	tufRepo        *tuf.Repo
 	invalid        *tuf.Repo // known data that was parsable but deemed invalid
-	roundTrip      http.RoundTripper
 	trustPinning   trustpinning.TrustPinConfig
 	LegacyVersions int // number of versions back to fetch roots to sign with
 }
@@ -185,7 +183,7 @@ func (r *repository) GetDelegationRoles() ([]data.Role, error) {
 
 // NewTarget is a helper method that returns a Target
 func NewTarget(targetName, targetPath string, targetCustom *canonicaljson.RawMessage) (*Target, error) {
-	b, err := ioutil.ReadFile(targetPath)
+	b, err := os.ReadFile(targetPath)
 	if err != nil {
 		return nil, err
 	}
@@ -363,7 +361,7 @@ func (r *repository) Initialize(rootKeyIDs []string, serverManagedRoles ...data.
 type errKeyNotFound struct{}
 
 func (errKeyNotFound) Error() string {
-	return fmt.Sprintf("cannot find matching private key id")
+	return "cannot find matching private key id"
 }
 
 // keyExistsInList returns the id of the private key in ids that matches the public key

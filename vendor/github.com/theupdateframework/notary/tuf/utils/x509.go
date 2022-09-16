@@ -12,8 +12,8 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"math/big"
+	"os"
 	"time"
 
 	"github.com/sirupsen/logrus"
@@ -88,7 +88,10 @@ func X509PublicKeyID(certPubKey data.PublicKey) (string, error) {
 func parseLegacyPrivateKey(block *pem.Block, passphrase string) (data.PrivateKey, error) {
 	var privKeyBytes []byte
 	var err error
+
+	//lint:ignore SA1019 TODO find out if we can remove x509.IsEncryptedPEMBlock as it is deprecated for security vulnerability mentioned in the api doc.
 	if x509.IsEncryptedPEMBlock(block) {
+		//lint:ignore SA1019 TODO find out if we can remove x509.DecryptPEMBlock as it is deprecated for security vulnerability mentioned in the api doc.
 		privKeyBytes, err = x509.DecryptPEMBlock(block, []byte(passphrase))
 		if err != nil {
 			return nil, errors.New("could not decrypt private key")
@@ -200,7 +203,7 @@ func LoadCertFromFile(filename string) (*x509.Certificate, error) {
 // data is expected to be PEM Encoded and contain one of more certificates
 // with PEM type "CERTIFICATE"
 func LoadCertBundleFromFile(filename string) ([]*x509.Certificate, error) {
-	b, err := ioutil.ReadFile(filename)
+	b, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, err
 	}

@@ -5,7 +5,6 @@ import (
 	"encoding/pem"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -161,7 +160,7 @@ func (f *FilesystemStore) GetSized(name string, size int64) ([]byte, error) {
 	}
 
 	l := io.LimitReader(file, size)
-	return ioutil.ReadAll(l)
+	return io.ReadAll(l)
 }
 
 // Get returns the meta for the given name.
@@ -170,7 +169,7 @@ func (f *FilesystemStore) Get(name string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	meta, err := ioutil.ReadFile(p)
+	meta, err := os.ReadFile(p)
 	if err != nil {
 		if os.IsNotExist(err) {
 			err = ErrMetaNotFound{Resource: name}
@@ -208,7 +207,7 @@ func (f *FilesystemStore) Set(name string, meta []byte) error {
 	os.RemoveAll(fp)
 
 	// Write the file to disk
-	return ioutil.WriteFile(fp, meta, notary.PrivNoExecPerms)
+	return os.WriteFile(fp, meta, notary.PrivNoExecPerms)
 }
 
 // RemoveAll clears the existing filestore by removing its base directory
@@ -234,7 +233,7 @@ func (f FilesystemStore) Location() string {
 // ListFiles returns a list of all the filenames that can be used with Get*
 // to retrieve content from this filestore
 func (f FilesystemStore) ListFiles() []string {
-	files := make([]string, 0, 0)
+	files := make([]string, 0)
 	filepath.Walk(f.baseDir, func(fp string, fi os.FileInfo, err error) error {
 		// If there are errors, ignore this particular file
 		if err != nil {
