@@ -1,3 +1,10 @@
+---
+title: "Docker commands"
+description: "Docker's CLI command description and usage"
+keywords: "Docker, Docker documentation, CLI, command line"
+identifier: "smn_cli_guide"
+---
+
 # The Docker commands
 
 This section contains reference information on using Docker's command line

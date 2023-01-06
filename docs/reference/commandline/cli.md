@@ -1,3 +1,24 @@
+---
+title: "Use the Docker command line"
+description: "Docker's CLI command description and usage"
+keywords: "Docker, Docker documentation, CLI, command line, config.json, CLI configuration file"
+redirect_from:
+- /reference/commandline/cli/
+- /engine/reference/commandline/engine/
+- /engine/reference/commandline/engine_activate/
+- /engine/reference/commandline/engine_check/
+- /engine/reference/commandline/engine_update/
+---
+
+ <!-- This file is maintained within the docker/cli GitHub
+      repository at https://github.com/docker/cli/. Make all
+      pull requests against that repo. If you see this file in
+      another repository, consider it read-only there, as it will
+      periodically be overwritten by the definitive file. Pull
+      requests which include edits to this file in other repositories
+      will be rejected.
+ -->
+
 # docker
 
 To list available commands, either run `docker` with no parameters
