@@ -7,8 +7,12 @@ ARG XX_VERSION=1.1.1
 ARG GOVERSIONINFO_VERSION=v1.3.0
 ARG GOTESTSUM_VERSION=v1.8.2
 ARG BUILDX_VERSION=0.9.1
+ARG OSXCROSS_VERSION=11.3-r8-debian
 
 FROM --platform=$BUILDPLATFORM tonistiigi/xx:${XX_VERSION} AS xx
+
+# osxcross contains the MacOSX cross toolchain for xx
+FROM crazymax/osxcross:${OSXCROSS_VERSION} AS osxcross
 
 FROM --platform=$BUILDPLATFORM golang:${GO_VERSION}-alpine${ALPINE_VERSION} AS build-base-alpine
 COPY --from=xx / /
@@ -67,7 +71,7 @@ COPY --from=goversioninfo /out/goversioninfo /usr/bin/goversioninfo
 RUN [ ! -f /etc/alpine-release ] && xx-info is-cross && [ "$(xx-info arch)" = "arm64" ] && XX_CC_PREFER_LINKER=ld xx-clang --setup-target-triple || true
 RUN --mount=type=bind,target=.,ro \
     --mount=type=cache,target=/root/.cache \
-    --mount=from=dockercore/golang-cross:xx-sdk-extras,target=/xx-sdk,src=/xx-sdk \
+    --mount=type=bind,from=osxcross,src=/osxsdk,target=/xx-sdk \
     --mount=type=tmpfs,target=cli/winresources \
     # override the default behavior of go with xx-go
     xx-go --wrap && \
@@ -93,7 +97,7 @@ ARG GO_STRIP
 ARG CGO_ENABLED
 ARG VERSION
 RUN --mount=ro --mount=type=cache,target=/root/.cache \
-    --mount=from=dockercore/golang-cross:xx-sdk-extras,target=/xx-sdk,src=/xx-sdk \
+    --mount=type=bind,from=osxcross,src=/osxsdk,target=/xx-sdk \
     xx-go --wrap && \
     TARGET=/out ./scripts/build/plugins e2e/cli-plugins/plugins/*
 
